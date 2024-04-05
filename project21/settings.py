@@ -190,12 +190,3 @@ AUTH_USER_MODEL = "main_info.MyUser"
 # MEDIA_ROOT = "C:/Users/Administrator/Desktop/group21/project21/media"
 
 # aws bit buckets settings
-AWS_ACCESS_KEY_ID = 'AKIAW3MEAAJIY2ASEOVN'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'group21bucket'
-AWS_S3_SIGNATURE_NAME = 's3v4',
-AWS_S3_REGION_NAME = 'eu-north-1'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL =  None
-AWS_S3_VERITY = True
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
