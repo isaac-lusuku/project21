@@ -200,12 +200,3 @@ ALLOWED_HOSTS = ['16.171.47.84',  '127.0.0.1']
 
 
 # aws bit buckets settings
-AWS_ACCESS_KEY_ID = 'AKIAW3MEAAJI5QBNZP5V'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'group21bucket'
-AWS_S3_SIGNATURE_NAME = 's3v4',
-AWS_S3_REGION_NAME = 'eu-north-1'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL =  None
-AWS_S3_VERITY = True
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
