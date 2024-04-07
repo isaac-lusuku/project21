@@ -1,5 +1,6 @@
 from datetime import timedelta
 from pathlib import Path
+from corsheaders.middleware import CorsMiddleware
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,6 +21,7 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -32,7 +34,6 @@ INSTALLED_APPS = [
     'ratings',
     'rest_framework', 
     'rest_framework_simplejwt',
-    'corsheaders',
     'whitenoise.runserver_nostatic',
 ]
 
@@ -195,7 +196,7 @@ AUTH_USER_MODEL = "main_info.MyUser"
 # MEDIA_ROOT = "C:/Users/Administrator/Desktop/group21/project21/media"
 
 
-ALLOWED_HOSTS = ['16.171.47.84']
+ALLOWED_HOSTS = ['16.171.47.84',  '127.0.0.1']
 
 
 # aws bit buckets settings
