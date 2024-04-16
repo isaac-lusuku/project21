@@ -72,6 +72,7 @@ TEMPLATES = [
     },
 ]
 
+SECURE_SSL_REDIRECT = True
 WSGI_APPLICATION = 'project21.wsgi.application'
 
 
