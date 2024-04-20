@@ -71,7 +71,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 # additional information for the userprofile
 class UserProfile(models.Model):
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE)
-    avatar = models.ImageField(blank=True, null=True)
+    avatar = models.CharField(max_length=255, default="https://i.pinimg.com/736x/87/67/64/8767644bc68a14c50addf8cb2de8c59e.jpg")
     phone = models.CharField(max_length=15, blank=False, null=True)
     bio = models.TextField(max_length=50, blank=True)
     is_active = models.BooleanField(default=True)

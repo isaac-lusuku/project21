@@ -6,30 +6,21 @@ from businesses.models import *
     businesses
 """
 
-# models for the product and service images
-class Image(models.Model):
-    image = models.ImageField(upload_to='images/')
 
 # for the products offered
 class Product(models.Model):
-    name = models.CharField(max_length= 30, blank= False)
+    productName = models.CharField(max_length= 255, blank= False, null = True)
     units = models.IntegerField(default=1)
-    seller = models.ForeignKey(Selling_Business, blank=False, on_delete= models.CASCADE)
+    seller = models.ForeignKey(Business, blank=False, on_delete= models.CASCADE)
     price = models.IntegerField(blank= False)
-    description = models.TextField(max_length= 200, blank= False, null= False)
-    images = models.ManyToManyField(Image)
+    des = models.TextField(max_length= 200, blank= False, null= False)
+    img = models.CharField(max_length=255, null= True)
+    color = models.CharField(max_length=255, default= "all")
+    cat = models.TextField(max_length= 200, default= "all")
+    time_added = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self) -> str:
         return self.name
     
-# for the services that are offered by the businesses
-class Service(models.Model):
-    service_name = models.CharField(max_length= 30, blank= False)
-    provider = models.ForeignKey(Service_Business, blank=False, on_delete= models.CASCADE, related_name="service_provider")
-    price = models.IntegerField(blank= False)
-    description = models.TextField(max_length= 200, blank= False, null= False)
-    images = models.ManyToManyField(Image)
 
-    def __str__(self) -> str:
-        return self.service_name
     
