@@ -1,5 +1,6 @@
 from django.db import models
 from businesses.models import *
+from main_info.models import MyUser
 
 """
     this is for all the models for the products and services that are offered by the 
@@ -23,4 +24,14 @@ class Product(models.Model):
         return self.name
     
 
-    
+# this is for the cart items
+class CartItem(models.Model):
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE) 
+    quantity = models.IntegerField(default=1)
+
+
+# this is to add favorites 
+class Favorites(models.Model):
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE) 

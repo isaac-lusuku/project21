@@ -10,6 +10,7 @@ import jwt
 import boto3
 from django.conf import settings
 from rest_framework.exceptions import NotFound
+from rest_framework.views import APIView
 
 # this creates the user
 class CreateUser(APIView):
