@@ -11,6 +11,7 @@ import boto3
 from django.conf import settings
 from rest_framework.exceptions import NotFound
 from rest_framework.views import APIView
+import random
 
 # this creates the user
 class CreateUser(APIView):
@@ -70,11 +71,14 @@ def Upload_image(request):
     # Check if the file exists
     if not file:
         return Response("No file provided", status=status.HTTP_400_BAD_REQUEST)
+    
+    # Generate a random four-digit number
+    random_number = random.randint(1000, 9999)
 
     # Save the file to S3
     try:
         extension = file.name.split(".")[-1]
-        file_name = f"{user_name}.{extension}"
+        file_name = f"{user_name}.{str(random_number)}.{extension}"
         https_link = upload_image_to_s3(file, file_name)
     except Exception as e:
         return Response(str(e), status=status.HTTP_500_INTERNAL_SERVER_ERROR)

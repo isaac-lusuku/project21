@@ -13,6 +13,7 @@ import random
 from main_info.models import MyUser
 from businesses.models import Business
 from rest_framework.exceptions import NotFound
+from businesses.serializers import BusinessSerializer
 
 
 # this updates the product image
@@ -112,6 +113,24 @@ def getOne(request):
         return Response({"error": "Product not found."}, status=status.HTTP_404_NOT_FOUND)  # Return a meaningful error message
     except ValueError:
         return Response({"error": "Invalid ID provided."}, status=status.HTTP_400_BAD_REQUEST)  # Handle invalid ID
+
+
+@api_view(['GET'])
+def getOneFull(request):
+    try:
+        id = int(request.query_params.get("id"))
+        product = Product.objects.get(id=id)
+        business = product.seller
+
+        # Serialize individual objects
+        serialized_business = BusinessSerializer(business)
+        
+        return Response(serialized_business.data, status=status.HTTP_200_OK)
+
+    except Product.DoesNotExist:
+        return Response({"error": "Product not found."}, status=status.HTTP_404_NOT_FOUND)
+    except ValueError:
+        return Response({"error": "Invalid ID provided."}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])

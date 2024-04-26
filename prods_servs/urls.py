@@ -9,5 +9,6 @@ urlpatterns = [
     path('updatecart/', update_cart),
     path('updatefavorites/', update_favorites),
     path('getCart/', getCart),
-    path('getFavorites', getFavorites)
+    path('getFavorites', getFavorites),
+    path('getOneFull/', getOneFull)
 ]

@@ -11,6 +11,8 @@ import jwt
 import boto3
 from django.conf import settings
 from main_info.models import MyUser
+from prods_servs.serializers import ProductSerializer
+from prods_servs.models import Product
 
 # this is to create a business
 @api_view(["POST"])
@@ -22,9 +24,11 @@ def register_business(request):
     print(request.data)
     serializer = BusinessSerializer(data=request.data, partial=True)
     if serializer.is_valid():
+        print("in here")
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
+        print("refused")
         errors = serializer.errors
         return Response(errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -40,3 +44,15 @@ def getBusinessInfo(request):
         return Response(serialized_business.data, status=status.HTTP_200_OK)
     except:
         return Response(status=status.HTTP_404_NOT_FOUND)
+    
+@api_view(["GET"])
+def getBusinessProducts(request):
+    try:
+        id = request.query_params.get("id")
+        business = Business.objects.get(owner = id)
+        products = Product.objects.filter(seller= business)
+        serialized_products = ProductSerializer(products, many= True)
+        return Response(serialized_products.data, status=status.HTTP_200_OK)
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
